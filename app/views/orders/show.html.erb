@@ -15,7 +15,6 @@
         </tr>
       </thead>
       <tbody>
-        <% puts "enhanced cart is ", @enhanced_cart %>
         <% enhanced_cart.each do |item| %>
           <%= render 'order', product: item[:product], quantity: item[:quantity].to_i %>
         <% end %>
