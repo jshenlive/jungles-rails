@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_26_062916) do
+ActiveRecord::Schema.define(version: 2022_07_28_164204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,19 @@ ActiveRecord::Schema.define(version: 2021_06_26_062916) do
     t.index ["product_id"], name: "index_line_items_on_product_id"
   end
 
+  create_table "menu_items", id: :serial, force: :cascade do |t|
+    t.string "name", limit: 255, null: false
+    t.text "description", null: false
+    t.integer "price", null: false
+    t.text "photo_url", null: false
+  end
+
+  create_table "order_items", id: :serial, force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "menu_item_id"
+    t.integer "quantity", null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "total_cents"
     t.datetime "created_at", precision: 6, null: false
@@ -53,7 +66,20 @@ ActiveRecord::Schema.define(version: 2021_06_26_062916) do
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "name", limit: 255, null: false
+    t.boolean "is_admin", null: false
+    t.string "phone_number", limit: 255, null: false
+    t.string "email", limit: 255, null: false
+    t.string "street_address", limit: 255, null: false
+    t.string "province", limit: 255, null: false
+    t.string "country", limit: 255, null: false
+    t.string "postal_code", limit: 255, null: false
+    t.string "password_digest"
+  end
+
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
+  add_foreign_key "order_items", "menu_items", name: "order_items_menu_item_id_fkey", on_delete: :cascade
   add_foreign_key "products", "categories"
 end
