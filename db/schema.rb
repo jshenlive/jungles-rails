@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_28_164204) do
+ActiveRecord::Schema.define(version: 2022_07_28_171800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,14 +68,16 @@ ActiveRecord::Schema.define(version: 2022_07_28_164204) do
 
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "name", limit: 255, null: false
-    t.boolean "is_admin", null: false
-    t.string "phone_number", limit: 255, null: false
-    t.string "email", limit: 255, null: false
-    t.string "street_address", limit: 255, null: false
-    t.string "province", limit: 255, null: false
-    t.string "country", limit: 255, null: false
-    t.string "postal_code", limit: 255, null: false
+    t.boolean "is_admin", default: false
+    t.string "phone_number", limit: 255
+    t.string "email", limit: 255, null:false
+    t.string "street_address", limit: 255
+    t.string "province", limit: 255
+    t.string "country", limit: 255
+    t.string "postal_code", limit: 255
     t.string "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_foreign_key "line_items", "orders"
