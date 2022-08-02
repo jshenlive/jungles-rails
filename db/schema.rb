@@ -67,7 +67,8 @@ ActiveRecord::Schema.define(version: 2022_07_28_171800) do
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
-    t.string "name", limit: 255, null: false
+    t.string "first_name", limit: 255, null: false
+    t.string "last_name", limit: 255, null: false
     t.boolean "is_admin", default: false
     t.string "phone_number", limit: 255
     t.string "email", limit: 255, null: false
