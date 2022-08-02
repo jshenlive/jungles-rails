@@ -1,4 +1,4 @@
-describe('Jungle-rails app', () => {
+describe('Home page', () => {
 
 // it('displays home page', () => {
 //   cy.visit('http://localhost:3000/')
