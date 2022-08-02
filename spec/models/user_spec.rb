@@ -65,21 +65,21 @@ RSpec.describe User, type: :model do
       @user = User.new(first_name:'Test1', last_name: 'User',email:'123@123.com',password:'1234',password_confirmation:'1234')
       expect(@user.save).to be(true)
 
-      expect(User.authenticate_with_credentials('123@123.com','1234')).to be(true)
+      expect(User.authenticate_with_credentials('123@123.com','1234')).to eq(@user)
     end
 
     it "does not authenticates a user with incorrect password" do
       @user = User.new(first_name:'Test1', last_name: 'User',email:'123@123.com',password:'1234',password_confirmation:'1234')
       expect(@user.save).to be(true)
 
-      expect(User.authenticate_with_credentials('123@123.com','12345')).to be(false)
+      expect(User.authenticate_with_credentials('123@123.com','12345')).to be(nil)
     end
 
     it "does not authenticates a user with incorrect email and password combination" do
       @user = User.new(first_name:'Test1', last_name: 'User',email:'123@123.com',password:'1234',password_confirmation:'1234')
       expect(@user.save).to be(true)
 
-      expect(User.authenticate_with_credentials('1234@123.com','1234')).to be(false)
+      expect(User.authenticate_with_credentials('1234@123.com','1234')).to be(nil)
     end
 
     #edge cases
@@ -87,14 +87,14 @@ RSpec.describe User, type: :model do
       @user = User.new(first_name:'Test1', last_name: 'User',email:'123@123.com',password:'1234',password_confirmation:'1234')
       expect(@user.save).to be(true)
 
-      expect(User.authenticate_with_credentials(' 123@123.com  ','1234')).to be(true)
+      expect(User.authenticate_with_credentials(' 123@123.com  ','1234')).to eq(@user)
     end
 
     it "authenticates a email with mixed cases" do
       @user = User.new(first_name:'Test1', last_name: 'User',email:'abc@def.com',password:'1234',password_confirmation:'1234')
       expect(@user.save).to be(true)
 
-      expect(User.authenticate_with_credentials(' ABC@Def.cOm  ','1234')).to be(true)
+      expect(User.authenticate_with_credentials(' ABC@Def.cOm  ','1234')).to eq(@user)
     end
 
 
