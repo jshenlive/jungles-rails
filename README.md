@@ -1,6 +1,14 @@
 # Jungle
 
 A mini e-commerce application built with Rails 6.1 for purposes of teaching Rails by example.
+Also contains examples of using cypress for tests
+
+!["screenshot on checkout page"](https://github.com/jshenlive/jungles-rails/blob/master/screenshots/checkout.png)
+!["screenshot of admin/category page"](https://github.com/jshenlive/jungles-rails/blob/master/screenshots/admin.png)
+!["screenshot of product display"](https://github.com/jshenlive/jungles-rails/blob/master/screenshots/products.png)
+
+
+
 
 ## Setup
 
